@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神农密境 - 中药学答题挑战</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+    <!-- 开始界面 -->
+    <div id="screen-start" class="screen active">
+        <div class="container">
+            <div class="logo-section">
+                <div class="herb-icon">&#x1F33F;</div>
+                <h1 class="game-title">神农密境</h1>
+                <p class="game-subtitle">中药学答题挑战</p>
+            </div>
+            
+            <div class="start-panel">
+                <div class="level-info">
+                    <div class="level-card">
+                        <span class="level-badge easy">童</span>
+                        <span class="level-name">小药童</span>
+                    </div>
+                    <div class="level-arrow">&#x27A1;</div>
+                    <div class="level-card">
+                        <span class="level-badge medium">师</span>
+                        <span class="level-name">百草药师</span>
+                    </div>
+                    <div class="level-arrow">&#x27A1;</div>
+                    <div class="level-card">
+                        <span class="level-badge hard">王</span>
+                        <span class="level-name">药王</span>
+                    </div>
+                </div>
+
+                <div class="category-select">
+                    <label for="category-picker">选择知识点（可选）：</label>
+                    <select id="category-picker">
+                        <option value="">全部知识点随机出题</option>
+                    </select>
+                </div>
+
+                <button id="btn-start" class="btn-primary">
+                    <span>开始闯关</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 答题界面 -->
+    <div id="screen-game" class="screen">
+        <div class="container">
+            <div class="game-header">
+                <div class="level-indicator">
+                    <span id="current-level-badge" class="level-badge easy">童</span>
+                    <span id="current-level-name">小药童</span>
+                </div>
+                <div class="progress-info">
+                    <span id="question-progress">1/10</span>
+                </div>
+                <div class="score-display">
+                    <span id="score-text">得分: 0</span>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-meta">
+                    <span id="question-type-badge" class="type-badge">单选题</span>
+                    <span id="question-category" class="category-tag"></span>
+                </div>
+                <div id="question-stem" class="question-stem"></div>
+                
+                <div id="options-container" class="options-container">
+                    <!-- 选项动态生成 -->
+                </div>
+
+                <div id="feedback-area" class="feedback-area hidden">
+                    <div id="feedback-icon" class="feedback-icon"></div>
+                    <div id="feedback-text" class="feedback-text"></div>
+                    <div id="feedback-analysis" class="feedback-analysis"></div>
+                    <div id="feedback-countdown" class="feedback-countdown"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="btn-submit" class="btn-submit" disabled>确认作答</button>
+                    <button id="btn-next" class="btn-next hidden">下一题</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关卡过渡界面 -->
+    <div id="screen-transition" class="screen">
+        <div class="container">
+            <div class="transition-card">
+                <div id="transition-icon" class="transition-icon">&#x1F3C6;</div>
+                <h2 id="transition-title">恭喜过关！</h2>
+                <p id="transition-desc"></p>
+                <div id="transition-stats" class="transition-stats"></div>
+                <button id="btn-next-level" class="btn-primary">进入下一关</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结束界面 -->
+    <div id="screen-end" class="screen">
+        <div class="container">
+            <div class="end-card">
+                <div id="end-icon" class="end-icon">&#x1F3C6;</div>
+                <h2 id="end-title">闯关结束</h2>
+                <p id="end-subtitle"></p>
+                <div id="end-stats" class="end-stats"></div>
+                <div class="end-actions">
+                    <button id="btn-wrong-book" class="btn-primary hidden">查看错题集</button>
+                    <button id="btn-restart" class="btn-primary">重新挑战</button>
+                    <button id="btn-home" class="btn-secondary">返回首页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 错题集界面 -->
+    <div id="screen-wrong-book" class="screen">
+        <div class="container">
+            <div class="wrong-book-card">
+                <div class="wrong-book-header">
+                    <h2>错题集</h2>
+                    <p>以下是你答错的题目，建议重点复习</p>
+                </div>
+                <div id="wrong-book-list" class="wrong-book-list">
+                    <!-- 错题动态生成 -->
+                </div>
+                <div class="wrong-book-actions">
+                    <button id="btn-back-end" class="btn-primary">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 粒子效果层 -->
+    <canvas id="particle-canvas"></canvas>
+
+    <script src="js/questions.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
