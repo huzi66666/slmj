@@ -3,6 +3,8 @@
  * 游戏核心逻辑
  */
 
+const ENCRYPT_KEY = "zhongyaoxue2024tcm";
+
 // ============ 数据解密 ============
 function xorDecrypt(encryptedBase64, key) {
     const encrypted = atob(encryptedBase64);
